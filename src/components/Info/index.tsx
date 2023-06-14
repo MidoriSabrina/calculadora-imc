@@ -1,22 +1,22 @@
 import { useState } from "react";
-import { Container, InfoButton, InfoContent } from "./styles";
+import './styles.css'
 
 export function Info() {
   const [open, setOpen] = useState(false);
 
   const handleInfoOpen = () => {
-    setOpen(!open)
+    setOpen(prev => !prev)
   };
 
   return (
-    <Container>
-      <InfoContent isOpen={open}>
+    <div className="info-container">
+      <div className={open ? 'info-content open' : 'info-content closed'}>
         <p>Magreza &lt; 18,5 kg/m²</p>
         <p>18,5 kg/m² &lt; Normal &lt; 24,9 kg/m² </p>
         <p>24,9 kg/m² &lt; Sobrepeso &lt; 30 kg/m²</p>
         <p> 30 kg/m² &lt; Obesidade</p>
-      </InfoContent>
-      <InfoButton onClick={handleInfoOpen}>?</InfoButton>
-    </Container>
+      </div>
+      <button className="info-button" onClick={handleInfoOpen}>?</button>
+    </div>
   );
 };

@@ -1,18 +1,18 @@
 import { Calculator } from "./components/Calculator";
 import { Info } from "./components/Info";
-import { Container, InfoContainer, Title } from "./App";
+import "./styles.css";
 
 function App() {
   return (
-    <Container>
-      <Title>CALCULADORA IMC</Title>
+    <div className="container">
+      <p className="title">CALCULADORA IMC</p>
 
       <Calculator />
 
-      <InfoContainer>
+      <div className="info">
         <Info />
-      </InfoContainer>
-    </Container>
+      </div>
+    </div>
   );
 }
 

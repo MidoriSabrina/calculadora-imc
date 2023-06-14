@@ -1,13 +1,5 @@
-import { ChangeEvent, SetStateAction, useState } from "react";
-import {
-  Button,
-  Container,
-  Input,
-  InputContainer,
-  Visor,
-  VisorBottom,
-  VisorTop,
-} from "./styles";
+import { ChangeEvent, useState } from "react";
+import './styles.css'
 
 export function Calculator() {
   const [height, setHeight] = useState("");
@@ -33,59 +25,62 @@ export function Calculator() {
   };
 
   const verifyStatusImc = (imc: number) => {
-    if( imc > 30) return 'Obesidade';
-    if( imc >= 24.9) return 'Sobrepeso';
-    if( imc >= 18.5) return 'Normal';
-    return 'Magreza';
-  }
+    if (imc > 30) return "Obesidade";
+    if (imc >= 24.9) return "Sobrepeso";
+    if (imc >= 18.5) return "Normal";
+    return "Magreza";
+  };
 
   const calculate = () => {
-    if(height == '' || weight == '') setResultStatus('Preencha todos os campos')
+    if (height == "" || weight == "")
+      setResultStatus("Preencha todos os campos");
     else {
-      const imc = parseFloat(weight) / ((parseFloat(height)/100)** 2);
+      const imc = parseFloat(weight) / (parseFloat(height) / 100) ** 2;
       const status = verifyStatusImc(imc);
-  
-      setResultStatus(status)
-      setResultNumber((imc).toFixed(1) + ' kg/m2')
+
+      setResultStatus(status);
+      setResultNumber(imc.toFixed(1) + " kg/m²");
     }
   };
 
   return (
-    <Container>
-      <Visor>
-        <VisorTop>
+    <div className="calculator-container">
+      <div className="visor">
+        <div>
           <p className="resultStatus">{resultStatus}</p>
-        </VisorTop>
-        <VisorBottom>
+        </div>
+        <div>
           <p className="resultNumber">{resultNumber}</p>
-        </VisorBottom>
-      </Visor>
-      <InputContainer>
+        </div>
+      </div>
+      <div className="input-container">
         <p>Altura (cm)</p>
-        <Input
+        <input
+          type="text"
           placeholder="Insira sua altura"
           value={height}
           maxLength={3}
           onChange={(event) => handleInputHeight(event)}
         />
-      </InputContainer>
-      <InputContainer>
+      </div>
+      <div className="input-container">
         <p>Peso (kg)</p>
-        <Input
+        <input
+          type="text"
           placeholder="Insira seu peso"
           value={weight}
           maxLength={5}
           onChange={(event) => handleInputWeight(event)}
         />
-      </InputContainer>
-      <div className="buttonLine">
-        <Button background="#8ECAE6" color="#0C0C0C" onClick={clearAll}>
-          Limpar
-        </Button>
-        <Button background="#219EBC" color="#FCFCFC" onClick={calculate}>
-          Calcular
-        </Button>
       </div>
-    </Container>
+      <div className="button-line">
+        <button className="clear" onClick={clearAll}>
+          Limpar
+        </button>
+        <button className="calculate" onClick={calculate}>
+          Calcular
+        </button>
+      </div>
+    </div>
   );
 }
