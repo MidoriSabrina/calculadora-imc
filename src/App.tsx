@@ -5,7 +5,7 @@ import "./styles.css";
 function App() {
   return (
     <div className="container">
-      <p className="title">CALCULADORA IMC</p>
+      <p className="title calc">CALCULADORA IMC</p>
 
       <Calculator />
 
